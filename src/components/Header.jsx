@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { AuthContext } from "../auth/AuthContext";
 
 const Header = () => {
-  const [user, setUser] = useState(null);
+  const { currentUser, setCurrentUser } = useContext(AuthContext);
 
   const handleLogout = () => {
-    setUser(null);
+    setCurrentUser(null);
   };
 
   return (
@@ -32,7 +33,7 @@ const Header = () => {
           >
             Brands
           </NavLink>
-          {user && (
+          {currentUser && (
             <NavLink
               to="/my-profile"
               className="text-gray-600 hover:text-blue-500"
@@ -51,7 +52,7 @@ const Header = () => {
         </nav>
 
         <div className="flex items-center space-x-4">
-          {!user ? (
+          {!currentUser ? (
             <>
               <NavLink
                 to="/login"
@@ -69,7 +70,7 @@ const Header = () => {
           ) : (
             <div className="flex items-center space-x-3">
               <img
-                src={user.photoURL}
+                src={currentUser.photoURL}
                 alt="Profile"
                 className="w-10 h-10 rounded-full border border-gray-300"
               />
