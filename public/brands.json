@@ -1,0 +1,184 @@
+[
+  {
+    "_id": "1",
+    "brand_name": "Tech World",
+    "rating": 4.5,
+    "description": "Your one-stop shop for the latest gadgets and electronics.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "TECH20",
+        "description": "Get 20% off on all tech accessories.",
+        "expiry_date": "2024-12-31",
+        "condition": "Minimum purchase of $50",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "FREESHIP",
+        "description": "Free shipping on orders over $100.",
+        "expiry_date": "2024-11-30",
+        "condition": "Valid on all items",
+        "coupon_type": "Free Shipping"
+      }
+    ],
+    "shop-Link": "https://techworld.com",
+    "category": "Electronics",
+    "isSaleOn": true
+  },
+  {
+    "_id": "2",
+    "brand_name": "Fashion Fiesta",
+    "rating": 4.0,
+    "description": "Trendy clothing and accessories for everyone.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "STYLE10",
+        "description": "Save 10% on your first purchase.",
+        "expiry_date": "2024-08-31",
+        "condition": "New customers only",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "SUMMER50",
+        "description": "50% off on summer collection.",
+        "expiry_date": "2024-06-30",
+        "condition": "Applicable on selected items",
+        "coupon_type": "Percentage"
+      }
+    ],
+    "shop-Link": "https://fashionfiesta.com",
+    "category": "Fashion",
+    "isSaleOn": true
+  },
+  {
+    "_id": "3",
+    "brand_name": "Gourmet Goodies",
+    "rating": 4.8,
+    "description": "Delicious treats and gourmet products delivered to your door.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "YUMMY15",
+        "description": "15% off on all gourmet items.",
+        "expiry_date": "2024-05-15",
+        "condition": "No minimum purchase required",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "CHEF5",
+        "description": "Save $5 on your order.",
+        "expiry_date": "2024-02-28",
+        "condition": "Minimum purchase of $30",
+        "coupon_type": "Flat Discount"
+      }
+    ],
+    "shop-Link": "https://gourmetgoodies.com",
+    "category": "Food & Beverage",
+    "isSaleOn": false
+  },
+  {
+    "_id": "4",
+    "brand_name": "Home Essentials",
+    "rating": 4.3,
+    "description": "Quality furniture and decor for your home.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "HOME20",
+        "description": "20% off on furniture and decor.",
+        "expiry_date": "2024-07-31",
+        "condition": "Minimum purchase of $200",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "NEWYEAR30",
+        "description": "30% off on New Year collection.",
+        "expiry_date": "2024-01-31",
+        "condition": "Valid on selected items",
+        "coupon_type": "Percentage"
+      }
+    ],
+    "shop-Link": "https://homeessentials.com",
+    "category": "Home & Living",
+    "isSaleOn": true
+  },
+  {
+    "_id": "5",
+    "brand_name": "Health Hub",
+    "rating": 4.7,
+    "description": "Everything you need for a healthy lifestyle.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "FITNESS15",
+        "description": "15% off on fitness equipment.",
+        "expiry_date": "2024-09-30",
+        "condition": "Valid on all items",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "HEALTHY10",
+        "description": "Save $10 on health supplements.",
+        "expiry_date": "2024-03-31",
+        "condition": "Minimum purchase of $50",
+        "coupon_type": "Flat Discount"
+      }
+    ],
+    "shop-Link": "https://healthhub.com",
+    "category": "Health & Wellness",
+    "isSaleOn": true
+  },
+  {
+    "_id": "6",
+    "brand_name": "Book Haven",
+    "rating": 4.9,
+    "description": "Discover your next great read.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "READ10",
+        "description": "10% off on all books.",
+        "expiry_date": "2024-12-31",
+        "condition": "Valid on all items",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "FREESHIPBOOKS",
+        "description": "Free shipping on orders over $40.",
+        "expiry_date": "2024-04-30",
+        "condition": "Applicable on selected locations",
+        "coupon_type": "Free Shipping"
+      }
+    ],
+    "shop-Link": "https://bookhaven.com",
+    "category": "Books & Media",
+    "isSaleOn": false
+  },
+  {
+    "_id": "7",
+    "brand_name": "Sports Galaxy",
+    "rating": 4.6,
+    "description": "Gear up for your next adventure.",
+    "brand_logo": "https://via.placeholder.com/150",
+    "coupons": [
+      {
+        "coupon_code": "SPORTS25",
+        "description": "25% off on all sportswear.",
+        "expiry_date": "2024-06-30",
+        "condition": "Minimum purchase of $100",
+        "coupon_type": "Percentage"
+      },
+      {
+        "coupon_code": "OUTDOOR20",
+        "description": "20% off on outdoor gear.",
+        "expiry_date": "2024-07-15",
+        "condition": "Valid on selected items",
+        "coupon_type": "Percentage"
+      }
+    ],
+    "shop-Link": "https://sportsgalaxy.com",
+    "category": "Sports & Outdoors",
+    "isSaleOn": true
+  }
+]
