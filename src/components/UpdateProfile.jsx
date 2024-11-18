@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { auth } from "../auth/firebase";
 import { updateProfile } from "firebase/auth";
 import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
@@ -52,7 +53,10 @@ const UpdateProfile = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center">
+    <div className="min-h-screen bg-gray-50 flex items-center justify-center p-2">
+      <Helmet>
+        <title>Update Profile - Cuopon Hunter</title>
+      </Helmet>
       <div className="bg-white shadow-md rounded-lg p-6 max-w-md w-full">
         <h1 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Update Your Information

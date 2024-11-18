@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 const Brands = () => {
   const [brands, setBrands] = useState([]);
@@ -35,9 +36,12 @@ const Brands = () => {
   return (
     <>
       <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white py-16 text-center">
+        <Helmet>
+          <title>Brands - Coupon Hunter</title>
+        </Helmet>
         <h1 className="text-3xl font-bold text-center mb-6">Our Brands</h1>
 
-        <div className="flex justify-center mb-6">
+        <div className="flex justify-center mb-6 p-2">
           <input
             type="text"
             placeholder="Search for a brand..."
@@ -47,7 +51,7 @@ const Brands = () => {
           />
         </div>
       </div>
-      <div className="container mx-auto p-4 min-h-[550px]">
+      <div className="container mx-auto p-4 min-h-screen">
         <div className="grid gap-4">
           {filteredBrands.map((brand) => (
             <div

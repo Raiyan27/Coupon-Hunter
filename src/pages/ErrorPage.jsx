@@ -1,8 +1,12 @@
 import React from "react";
-
+import { Helmet } from "react-helmet";
 const ErrorPage = () => {
   return (
     <div className="min-h-screen bg-blue-50 flex items-center justify-center py-10">
+      <Helmet>
+        <title>Error Page - Coupon Hunter</title>
+      </Helmet>
+
       <div className="bg-white shadow-lg rounded-lg p-8 max-w-md text-center">
         <h1 className="text-6xl font-bold text-red-500 mb-4">Oops! 404</h1>
         <p className="text-xl text-gray-600 mb-6">

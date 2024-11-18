@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
+import { Helmet } from "react-helmet";
 
 const MyProfile = () => {
   const { currentUser } = useContext(AuthContext);
@@ -16,13 +17,16 @@ const MyProfile = () => {
 
   return (
     <div className="min-h-screen bg-gray-50">
+      {" "}
+      <Helmet>
+        <title>My-Profile - Coupon Hunter</title>
+      </Helmet>
       <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white py-16 text-center">
         <h1 className="text-4xl font-bold mb-2">
           Welcome, {currentUser.displayName || "User"}
         </h1>
         <p className="text-lg">Manage your profile and account settings.</p>
       </div>
-
       <div className="container mx-auto mt-10 px-4">
         <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
           <div className="text-center">

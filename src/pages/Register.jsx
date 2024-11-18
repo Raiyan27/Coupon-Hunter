@@ -4,6 +4,7 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import { toast } from "react-toastify";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import { Helmet } from "react-helmet";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -54,9 +55,12 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-[820px]">
-      <div className="flex-grow flex items-center justify-center bg-gray-100">
-        <div className="max-w-md min-w-[400px] mx-auto bg-white p-6 shadow rounded-lg">
+    <div className="flex flex-col min-h-screen">
+      <Helmet>
+        <title>Register - Coupon Hunter</title>
+      </Helmet>
+      <div className="flex-grow flex items-center justify-center bg-gray-100 p-2">
+        <div className="max-w-md md:min-w-[400px]  mx-auto bg-white p-6 shadow rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-4">Register</h1>
           <form onSubmit={handleRegister}>
             <input

@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const Brand = () => {
   const location = useLocation();
@@ -26,7 +27,10 @@ const Brand = () => {
   };
 
   return (
-    <div className="container mx-auto p-4 min-h-[800px]">
+    <div className="container mx-auto p-4 min-h-screen">
+      <Helmet>
+        <title>Brand Page - Coupon Hunter</title>
+      </Helmet>
       <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white rounded-lg shadow-lg p-6 text-center">
         <img
           src={brand.brand_logo}

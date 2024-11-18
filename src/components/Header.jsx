@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
@@ -7,6 +7,7 @@ const Header = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const auth = getAuth();
   const navigate = useNavigate();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const handleLogout = async () => {
     try {
@@ -17,8 +18,13 @@ const Header = () => {
     }
   };
 
-  const handleNavigate = () => {
-    navigate("/my-profile");
+  const handleNavigate = (path) => {
+    setIsMenuOpen(false);
+    navigate(path);
+  };
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -75,7 +81,7 @@ const Header = () => {
           </NavLink>
         </nav>
 
-        <div className="flex items-center space-x-4">
+        <div className="items-center space-x-4 hidden md:flex">
           {!currentUser ? (
             <>
               <NavLink
@@ -97,7 +103,7 @@ const Header = () => {
                 src={currentUser.photoURL}
                 alt="Profile"
                 className="w-10 h-10 rounded-full border border-gray-300 hover:border hover:p-[2px]"
-                onClick={handleNavigate}
+                onClick={() => handleNavigate("/my-profile")}
               />
               <button
                 onClick={handleLogout}
@@ -110,7 +116,10 @@ const Header = () => {
         </div>
 
         <div className="md:hidden">
-          <button className="text-gray-600 focus:outline-none">
+          <button
+            onClick={toggleMenu}
+            className="text-gray-600 focus:outline-none"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="w-6 h-6"
@@ -128,6 +137,87 @@ const Header = () => {
           </button>
         </div>
       </div>
+
+      {isMenuOpen && (
+        <div className="md:hidden text-center">
+          <nav className="space-y-4 px-4 py-3">
+            <NavLink
+              to="/"
+              onClick={() => handleNavigate("/")}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 font-semibold block"
+                  : "text-gray-600 hover:text-blue-500 block"
+              }
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/brands"
+              onClick={() => handleNavigate("/brands")}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 font-semibold block"
+                  : "text-gray-600 hover:text-blue-500 block"
+              }
+            >
+              Brands
+            </NavLink>
+            {currentUser && (
+              <NavLink
+                to="/my-profile"
+                onClick={() => handleNavigate("/my-profile")}
+                className={({ isActive }) =>
+                  isActive
+                    ? "text-blue-500 font-semibold block"
+                    : "text-gray-600 hover:text-blue-500 block"
+                }
+              >
+                My Profile
+              </NavLink>
+            )}
+            <NavLink
+              to="/about-us"
+              onClick={() => handleNavigate("/about-us")}
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 font-semibold block"
+                  : "text-gray-600 hover:text-blue-500 block"
+              }
+            >
+              About Dev
+            </NavLink>
+
+            {!currentUser ? (
+              <>
+                <NavLink
+                  to="/login"
+                  onClick={() => handleNavigate("/login")}
+                  className="px-4 py-2 text-sm text-black bg-gray-100 rounded-lg hover:bg-blue-600 block"
+                >
+                  Login
+                </NavLink>
+                <NavLink
+                  to="/register"
+                  onClick={() => handleNavigate("/register")}
+                  className="px-4 py-2 text-sm text-white bg-blue-500 rounded-lg hover:bg-blue-600 block"
+                >
+                  Register
+                </NavLink>
+              </>
+            ) : (
+              <div className="flex flex-col space-y-3">
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+                >
+                  Log Out
+                </button>
+              </div>
+            )}
+          </nav>
+        </div>
+      )}
     </header>
   );
 };

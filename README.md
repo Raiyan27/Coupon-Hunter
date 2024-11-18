@@ -1,6 +1,6 @@
 # Coupon Hunter: Coupon Hunting Application
 
-**Live URL**:
+**Live URL**: https://coupon-hunter.surge.sh/ OR https://coupon-hunter.netlify.app/
 
 ## Overview
 
@@ -46,5 +46,5 @@ Users can sign up or log in using their email or Google account through Firebase
   - Custom animations
 
 - **Hosting**:
-  - **Surge**:
-  - **Netlify**:
+  - **Surge**: https://coupon-hunter.surge.sh/
+  - **Netlify**: https://coupon-hunter.netlify.app/

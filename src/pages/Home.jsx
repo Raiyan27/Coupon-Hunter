@@ -3,6 +3,7 @@ import Marquee from "react-fast-marquee";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Helmet } from "react-helmet";
 
 const HomePage = () => {
   const [brands, setBrands] = useState([]);
@@ -57,10 +58,14 @@ const HomePage = () => {
   };
   return (
     <div className="bg-gray-50 min-h-screen">
+      <Helmet>
+        <title>Home - Coupon Hunter</title>
+      </Helmet>
+
       <section className="relative">
         <div className=" text-white relative z-10">
           <div className="container mx-auto py-16 px-4 text-center">
-            <h1 className="text-6xl font-bold mb-4 animate__animated animate__backInDown">
+            <h1 className="lg:text-6xl text-4xl font-bold mb-4 animate__animated animate__backInDown">
               Welcome to Coupon Hunter
             </h1>
             <p className="text-lg ">
@@ -79,13 +84,13 @@ const HomePage = () => {
 
           <button
             onClick={handlePrev}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-6xl z-20"
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white md:text-6xl text-2xl z-20"
           >
             &#8592;
           </button>
           <button
             onClick={handleNext}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-6xl z-20"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white md:text-6xl text-2xl z-20"
           >
             &#8594;
           </button>
