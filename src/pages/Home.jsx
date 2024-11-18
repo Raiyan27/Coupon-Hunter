@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 import Marquee from "react-fast-marquee";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const HomePage = () => {
   const [brands, setBrands] = useState([]);
   const [coupons, setCoupons] = useState([]);
+  const [bgIndex, setBgIndex] = useState(0);
   const navigate = useNavigate();
+
+  const bgImages = ["/bg-1.jpg", "/bg-2.jpg", "/bg-3.jpg"];
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,25 +37,58 @@ const HomePage = () => {
   const handleBrand = (brand) => {
     navigate(`/brand/${brand._id}`, { state: brand });
   };
+
+  const handleCopy = async (couponCode) => {
+    try {
+      await navigator.clipboard.writeText(couponCode);
+      toast.success(`Coupon code "${couponCode}" copied to clipboard!`);
+    } catch (error) {
+      toast.error("Failed to copy the coupon code.");
+    }
+  };
+
+  const handlePrev = () => {
+    setBgIndex(
+      (prevIndex) => (prevIndex - 1 + bgImages.length) % bgImages.length
+    );
+  };
+  const handleNext = () => {
+    setBgIndex((prevIndex) => (prevIndex + 1) % bgImages.length);
+  };
   return (
     <div className="bg-gray-50 min-h-screen">
       <section className="relative">
-        <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white">
+        <div className=" text-white relative z-10">
           <div className="container mx-auto py-16 px-4 text-center">
-            <h1 className="text-4xl font-bold mb-4">Welcome to Discount PRO</h1>
+            <h1 className="text-4xl font-bold mb-4">
+              Welcome to Coupon Hunter
+            </h1>
             <p className="text-lg">
               Find the best deals from your favorite e-commerce stores in
               Bangladesh.
             </p>
           </div>
         </div>
-        <div className="absolute top-0 left-0 w-full h-full">
+        <div className="absolute top-0 left-0 w-full h-72">
           <div
-            className="w-full h-64 bg-center bg-cover"
+            className="w-full h-full bg-center bg-cover transition-all duration-1000"
             style={{
-              backgroundImage: "url('https://via.placeholder.com/1920x500')",
+              backgroundImage: `url(${bgImages[bgIndex]})`,
             }}
           ></div>
+
+          <button
+            onClick={handlePrev}
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl z-20"
+          >
+            &#8592;
+          </button>
+          <button
+            onClick={handleNext}
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl z-20"
+          >
+            &#8594;
+          </button>
         </div>
       </section>
 
@@ -112,9 +149,9 @@ const HomePage = () => {
             Featured Coupons
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {coupons.map((coupon, index) => (
+            {coupons.slice(0, 6).map((coupon, index) => (
               <div key={index} className="bg-white shadow-md rounded-lg p-4">
-                <h1 className="text-4xl bold">{coupon.brandName}</h1>
+                <h1 className="text-4xl font-bold">{coupon.brandName}</h1>
                 <h3 className="text-lg text-gray-600 mb-2">
                   Coupon code: {coupon.coupon_code}
                 </h3>
@@ -128,7 +165,10 @@ const HomePage = () => {
                 <p className="text-gray-600">
                   <span className="font-bold">Category:</span> {coupon.category}
                 </p>
-                <button className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">
+                <button
+                  className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
+                  onClick={() => handleCopy(coupon.coupon_code)}
+                >
                   Copy Code
                 </button>
               </div>

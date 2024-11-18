@@ -1,11 +1,12 @@
 import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
   const auth = getAuth();
+  const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
@@ -14,6 +15,10 @@ const Header = () => {
     } catch (error) {
       console.error("Error logging out: ", error);
     }
+  };
+
+  const handleNavigate = () => {
+    navigate("/my-profile");
   };
 
   return (
@@ -91,7 +96,8 @@ const Header = () => {
               <img
                 src={currentUser.photoURL}
                 alt="Profile"
-                className="w-10 h-10 rounded-full border border-gray-300"
+                className="w-10 h-10 rounded-full border border-gray-300 hover:border hover:p-[2px]"
+                onClick={handleNavigate}
               />
               <button
                 onClick={handleLogout}
