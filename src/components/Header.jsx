@@ -1,12 +1,19 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
+import { getAuth, signOut } from "firebase/auth";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
+  const auth = getAuth();
 
-  const handleLogout = () => {
-    setCurrentUser(null);
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      setCurrentUser(null);
+    } catch (error) {
+      console.error("Error logging out: ", error);
+    }
   };
 
   return (
