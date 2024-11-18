@@ -2,6 +2,10 @@ import { useState, useContext } from "react";
 import { useNavigate, NavLink } from "react-router-dom";
 import { AuthContext } from "../auth/AuthContext";
 import { getAuth, signOut } from "firebase/auth";
+import { IoHomeOutline } from "react-icons/io5";
+import { TbBrandShopee } from "react-icons/tb";
+import { CgProfile } from "react-icons/cg";
+import { FaDev } from "react-icons/fa";
 
 const Header = () => {
   const { currentUser, setCurrentUser } = useContext(AuthContext);
@@ -30,7 +34,8 @@ const Header = () => {
   return (
     <header className="bg-white shadow-md">
       <div className="container mx-auto flex items-center justify-between px-4 py-3">
-        <div className="text-2xl font-bold text-gray-800">
+        <div className="flex text-2xl font-bold text-gray-800 items-center justify-center gap-1">
+          <img className="w-10 rounded-full " src="/favicon.jpg" alt="" />
           <NavLink to="/" className="hover:text-blue-500">
             Coupon Hunter
           </NavLink>
@@ -41,20 +46,23 @@ const Header = () => {
             to="/"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-500 font-semibold"
-                : "text-gray-600 hover:text-blue-500"
+                ? "flex items-center justify-center text-blue-500 font-semibold space-x-1"
+                : "flex items-center justify-center text-gray-600 hover:text-blue-500 space-x-1"
             }
           >
-            Home
+            <IoHomeOutline />
+            <span>Home</span>
           </NavLink>
+
           <NavLink
             to="/brands"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-500 font-semibold"
-                : "text-gray-600 hover:text-blue-500"
+                ? "flex items-center justify-center text-blue-500 font-semibold space-x-1"
+                : "flex items-center justify-center text-gray-600 hover:text-blue-500 space-x-1"
             }
           >
+            <TbBrandShopee />
             Brands
           </NavLink>
           {currentUser && (
@@ -62,10 +70,11 @@ const Header = () => {
               to="/my-profile"
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-500 font-semibold"
-                  : "text-gray-600 hover:text-blue-500"
+                  ? "flex items-center justify-center text-blue-500 font-semibold space-x-1"
+                  : "flex items-center justify-center text-gray-600 hover:text-blue-500 space-x-1"
               }
             >
+              <CgProfile />
               My Profile
             </NavLink>
           )}
@@ -73,10 +82,11 @@ const Header = () => {
             to="/about-us"
             className={({ isActive }) =>
               isActive
-                ? "text-blue-500 font-semibold"
-                : "text-gray-600 hover:text-blue-500"
+                ? "flex items-center justify-center text-blue-500 font-semibold space-x-1"
+                : "flex items-center justify-center text-gray-600 hover:text-blue-500 space-x-1"
             }
           >
+            <FaDev />
             About Dev
           </NavLink>
         </nav>
@@ -98,19 +108,24 @@ const Header = () => {
               </NavLink>
             </>
           ) : (
-            <div className="flex items-center space-x-3">
-              <img
-                src={currentUser.photoURL}
-                alt="Profile"
-                className="w-10 h-10 rounded-full border border-gray-300 hover:border hover:p-[2px]"
-                onClick={() => handleNavigate("/my-profile")}
-              />
-              <button
-                onClick={handleLogout}
-                className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
-              >
-                Log Out
-              </button>
+            <div className="flex flex-col items-end justify-end">
+              <div className="flex items-center space-x-3">
+                <img
+                  src={currentUser.photoURL}
+                  alt="Profile"
+                  className="w-10 h-10 rounded-full border border-gray-300 hover:border hover:p-[2px]"
+                  onClick={() => handleNavigate("/my-profile")}
+                />
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 text-sm text-white bg-red-500 rounded-lg hover:bg-red-600"
+                >
+                  Log Out
+                </button>
+              </div>
+              <h1 className="hidden lg:flex text-lg text-gray-400 hover:text-gray-600">
+                {currentUser.email}
+              </h1>
             </div>
           )}
         </div>
@@ -146,10 +161,11 @@ const Header = () => {
               onClick={() => handleNavigate("/")}
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-500 font-semibold block"
-                  : "text-gray-600 hover:text-blue-500 block"
+                  ? "text-blue-500 font-semibold flex justify-center items-center gap-4"
+                  : "text-gray-600 hover:text-blue-500 flex justify-center items-center gap-4"
               }
             >
+              <IoHomeOutline />
               Home
             </NavLink>
             <NavLink
@@ -157,10 +173,11 @@ const Header = () => {
               onClick={() => handleNavigate("/brands")}
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-500 font-semibold block"
-                  : "text-gray-600 hover:text-blue-500 block"
+                  ? "text-blue-500 font-semibold flex justify-center items-center gap-4"
+                  : "text-gray-600 hover:text-blue-500 flex justify-center items-center gap-4"
               }
             >
+              <TbBrandShopee />
               Brands
             </NavLink>
             {currentUser && (
@@ -169,10 +186,11 @@ const Header = () => {
                 onClick={() => handleNavigate("/my-profile")}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-500 font-semibold block"
-                    : "text-gray-600 hover:text-blue-500 block"
+                    ? "text-blue-500 font-semibold flex justify-center items-center gap-4"
+                    : "text-gray-600 hover:text-blue-500 flex justify-center items-center gap-4"
                 }
               >
+                <CgProfile />
                 My Profile
               </NavLink>
             )}
@@ -181,10 +199,11 @@ const Header = () => {
               onClick={() => handleNavigate("/about-us")}
               className={({ isActive }) =>
                 isActive
-                  ? "text-blue-500 font-semibold block"
-                  : "text-gray-600 hover:text-blue-500 block"
+                  ? "text-blue-500 font-semibold flex justify-center items-center gap-4"
+                  : "text-gray-600 hover:text-blue-500 flex justify-center items-center gap-4"
               }
             >
+              <FaDev />
               About Dev
             </NavLink>
 

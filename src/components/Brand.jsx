@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
+import { FaStar } from "react-icons/fa";
 
 const Brand = () => {
   const { id } = useParams();
@@ -66,6 +67,9 @@ const Brand = () => {
         />
         <h1 className="text-4xl font-bold">{brand.brand_name}</h1>
         <p className="mt-2">{brand.description}</p>
+        <div className="flex items-center text-yellow-500 w-full justify-center">
+          <FaStar /> <span className="ml-2">{brand.rating}</span>
+        </div>
       </div>
 
       <div className="mt-8">
