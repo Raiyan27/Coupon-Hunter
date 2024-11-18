@@ -60,10 +60,10 @@ const HomePage = () => {
       <section className="relative">
         <div className=" text-white relative z-10">
           <div className="container mx-auto py-16 px-4 text-center">
-            <h1 className="text-4xl font-bold mb-4">
+            <h1 className="text-6xl font-bold mb-4 animate__animated animate__backInDown">
               Welcome to Coupon Hunter
             </h1>
-            <p className="text-lg">
+            <p className="text-lg ">
               Find the best deals from your favorite e-commerce stores in
               Bangladesh.
             </p>
@@ -79,20 +79,20 @@ const HomePage = () => {
 
           <button
             onClick={handlePrev}
-            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-3xl z-20"
+            className="absolute top-1/2 left-4 transform -translate-y-1/2 text-white text-6xl z-20"
           >
             &#8592;
           </button>
           <button
             onClick={handleNext}
-            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-3xl z-20"
+            className="absolute top-1/2 right-4 transform -translate-y-1/2 text-white text-6xl z-20"
           >
             &#8594;
           </button>
         </div>
       </section>
 
-      <section className="container mx-auto py-10 px-4">
+      <section className="container mx-auto py-10 px-4 mt-8">
         <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
           Top Brands
         </h2>
@@ -114,7 +114,7 @@ const HomePage = () => {
       </section>
 
       <section className="container mx-auto py-10 px-4">
-        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+        <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center animate__animated animate__tada">
           Brands on Sale
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -145,7 +145,7 @@ const HomePage = () => {
       </section>
       <section className="bg-blue-50 py-10">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center">
+          <h2 className="text-3xl font-bold text-gray-800 mb-6 text-center animate__animated animate__tada">
             Featured Coupons
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

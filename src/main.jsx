@@ -17,6 +17,7 @@ import Brand from "./components/Brand.jsx";
 import MyProfile from "./components/MyProfile.jsx";
 import UpdateProfile from "./components/UpdateProfile.jsx";
 import ForgotPassword from "./components/ForgotPassword.jsx";
+import "animate.css";
 
 const router = createBrowserRouter([
   {
