@@ -1,5 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { auth } from "../auth/firebase";
+import { updateProfile } from "firebase/auth";
+import { toast } from "react-toastify";
 
 const UpdateProfile = () => {
   const navigate = useNavigate();
@@ -7,6 +10,20 @@ const UpdateProfile = () => {
     name: "",
     photo: "",
   });
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      setUser(currentUser);
+      setFormData({
+        name: currentUser.displayName || "",
+        photo: currentUser.photoURL || "",
+      });
+    } else {
+      navigate("/login");
+    }
+  }, [navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,9 +33,22 @@ const UpdateProfile = () => {
     }));
   };
 
-  const handleUpdate = () => {
-    console.log("Updated Info:", formData);
-    navigate("/my-profile");
+  const handleUpdate = async () => {
+    if (user) {
+      try {
+        await updateProfile(user, {
+          displayName: formData.name,
+          photoURL: formData.photo,
+        });
+
+        toast.success("Profile updated successfully!");
+
+        navigate("/my-profile");
+      } catch (error) {
+        console.error("Error updating profile:", error.message);
+        toast.error("Error updating profile. Please try again.");
+      }
+    }
   };
 
   return (

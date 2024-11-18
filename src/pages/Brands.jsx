@@ -43,11 +43,11 @@ const Brands = () => {
             placeholder="Search for a brand..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="border rounded-lg px-4 py-2 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="border rounded-lg px-4 py-2 w-full max-w-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black"
           />
         </div>
       </div>
-      <div className="container mx-auto p-4">
+      <div className="container mx-auto p-4 min-h-[550px]">
         <div className="grid gap-4">
           {filteredBrands.map((brand) => (
             <div

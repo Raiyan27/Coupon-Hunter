@@ -37,18 +37,13 @@ const MyProfile = () => {
             <p className="text-gray-600">
               {currentUser.email || "No Email Available"}
             </p>
+            <button
+              onClick={() => navigate("/update-profile")}
+              className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 mt-4"
+            >
+              Update Information
+            </button>
           </div>
-        </div>
-      </div>
-
-      <div className="container mx-auto mt-10 px-4">
-        <div className="bg-white shadow-md rounded-lg p-6 max-w-md mx-auto">
-          <button
-            onClick={() => navigate("/update-profile")}
-            className="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
-          >
-            Update Information
-          </button>
         </div>
       </div>
     </div>

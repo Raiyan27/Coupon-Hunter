@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import { toast } from "react-toastify";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
@@ -24,6 +24,7 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
+
     if (!validatePassword(formData.password)) {
       setError(
         "Password must contain at least 6 characters, including uppercase and lowercase letters."
@@ -32,11 +33,19 @@ const Register = () => {
     }
 
     try {
-      await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         auth,
         formData.email,
         formData.password
       );
+
+      const user = userCredential.user;
+
+      await updateProfile(user, {
+        displayName: formData.name,
+        photoURL: formData.photoURL,
+      });
+
       toast.success("Registration successful!");
       navigate("/");
     } catch (error) {
@@ -72,7 +81,7 @@ const Register = () => {
             />
             <input
               type="url"
-              placeholder="Photo URL"
+              placeholder="Photo URL (Optional)"
               value={formData.photoURL}
               onChange={(e) =>
                 setFormData({ ...formData, photoURL: e.target.value })
@@ -80,7 +89,6 @@ const Register = () => {
               className="w-full p-2 mb-2 border rounded"
             />
             <div className="relative">
-              {" "}
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"

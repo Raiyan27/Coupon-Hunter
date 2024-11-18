@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Brand from "./components/Brand.jsx";
 import MyProfile from "./components/MyProfile.jsx";
 import UpdateProfile from "./components/UpdateProfile.jsx";
+import ForgotPassword from "./components/ForgotPassword.jsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "register",
         element: <Register />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
       },
       {
         path: "brands",

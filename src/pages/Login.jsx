@@ -85,6 +85,14 @@ const Login = () => {
               Don’t have an account? Register here
             </Link>
           </p>
+          <p className="text-center mt-4 text-sm">
+            <Link
+              to="/forgot-password"
+              className="text-blue-500 hover:underline"
+            >
+              Forgot Password?
+            </Link>
+          </p>
           <button
             onClick={handleGoogleLogin}
             className="bg-red-500 text-white p-2 w-full mt-4 rounded hover:bg-red-600"
