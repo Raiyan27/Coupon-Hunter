@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../auth/firebase";
 import { toast } from "react-toastify";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -12,6 +13,7 @@ const Register = () => {
     photoURL: "",
   });
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   const validatePassword = (password) => {
@@ -45,12 +47,9 @@ const Register = () => {
   return (
     <div className="flex flex-col min-h-[820px]">
       <div className="flex-grow flex items-center justify-center bg-gray-100">
-        <div className="container mx-auto p-4">
+        <div className="max-w-md min-w-[400px] mx-auto bg-white p-6 shadow rounded-lg">
           <h1 className="text-2xl font-bold text-center mb-4">Register</h1>
-          <form
-            onSubmit={handleRegister}
-            className="max-w-md mx-auto bg-white p-6 shadow rounded-lg"
-          >
+          <form onSubmit={handleRegister}>
             <input
               type="text"
               placeholder="Name"
@@ -80,16 +79,30 @@ const Register = () => {
               }
               className="w-full p-2 mb-2 border rounded"
             />
-            <input
-              type="password"
-              placeholder="Password"
-              value={formData.password}
-              onChange={(e) =>
-                setFormData({ ...formData, password: e.target.value })
-              }
-              className="w-full p-2 mb-2 border rounded"
-              required
-            />
+            <div className="relative">
+              {" "}
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Password"
+                value={formData.password}
+                onChange={(e) =>
+                  setFormData({ ...formData, password: e.target.value })
+                }
+                className="w-full p-2 mb-2 border rounded"
+                required
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((prev) => !prev)}
+                className="absolute right-3 top-2.5 text-gray-500 hover:text-gray-700"
+              >
+                {showPassword ? (
+                  <IoEyeOffOutline className="w-5 h-5" />
+                ) : (
+                  <IoEyeOutline className="w-5 h-5" />
+                )}
+              </button>
+            </div>
             {error && <p className="text-red-500 text-sm">{error}</p>}
             <button
               type="submit"
