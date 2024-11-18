@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import Marquee from "react-fast-marquee";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const [brands, setBrands] = useState([]);
   const [coupons, setCoupons] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -28,6 +30,9 @@ const HomePage = () => {
     fetchData();
   }, []);
 
+  const handleBrand = (brand) => {
+    navigate(`/brand/${brand._id}`, { state: brand });
+  };
   return (
     <div className="bg-gray-50 min-h-screen">
       <section className="relative">
@@ -56,13 +61,14 @@ const HomePage = () => {
         </h2>
         <div className="bg-white shadow-lg rounded-lg">
           <Marquee gradient={false} pauseOnHover>
-            <div className="flex items-center space-x-8 py-4">
+            <div className="flex items-center space-x-32 py-4">
               {brands.map((brand) => (
                 <img
+                  onClick={() => handleBrand(brand)}
                   key={brand._id}
                   src={brand.brand_logo}
                   alt={brand.brand_name}
-                  className="w-20 h-20 object-contain"
+                  className="w-20 h-20 object-contain rounded-full cursor-pointer hover:border hover:bg-blue-500"
                 />
               ))}
             </div>
@@ -85,7 +91,7 @@ const HomePage = () => {
                 <img
                   src={brand.brand_logo}
                   alt={brand.brand_name}
-                  className="w-16 h-16 mx-auto mb-4 object-contain"
+                  className="w-16 h-16 mx-auto mb-4 object-contain rounded-full"
                 />
                 <h3 className="text-xl font-semibold text-gray-800 text-center">
                   {brand.brand_name}
