@@ -16,7 +16,7 @@ const HomePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("./brands.json");
+        const response = await fetch("./brandList.json");
         const data = await response.json();
         setBrands(data);
         const brandCoupons = data.flatMap((brand) =>

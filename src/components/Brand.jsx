@@ -1,11 +1,47 @@
-import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Helmet } from "react-helmet";
 
 const Brand = () => {
-  const location = useLocation();
-  const brand = location.state;
+  const { id } = useParams();
+  const [brand, setBrand] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchBrand = async () => {
+      try {
+        const response = await fetch("/brandList.json");
+        if (!response.ok) {
+          throw new Error("Failed to fetch brand data");
+        }
+        const data = await response.json();
+
+        const selectedBrand = data.find((b) => b._id === id);
+        setBrand(selectedBrand);
+      } catch (error) {
+        console.error("Error fetching brand:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchBrand();
+  }, [id]);
+
+  const handleCopy = async (couponCode) => {
+    try {
+      await navigator.clipboard.writeText(couponCode);
+      toast.success(`Coupon code "${couponCode}" copied to clipboard!`);
+    } catch (error) {
+      toast.error("Failed to copy the coupon code.");
+    }
+  };
+
+  if (loading) {
+    return <p className="text-center text-gray-600">Loading...</p>;
+  }
 
   if (!brand) {
     return (
@@ -17,19 +53,10 @@ const Brand = () => {
     );
   }
 
-  const handleCopy = async (couponCode) => {
-    try {
-      await navigator.clipboard.writeText(couponCode);
-      toast.success(`Coupon code "${couponCode}" copied to clipboard!`);
-    } catch (error) {
-      toast.error("Failed to copy the coupon code.");
-    }
-  };
-
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <Helmet>
-        <title>Brand Page - Coupon Hunter</title>
+        <title>{brand.brand_name} - Coupon Hunter</title>
       </Helmet>
       <div className="bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 text-white rounded-lg shadow-lg p-6 text-center">
         <img

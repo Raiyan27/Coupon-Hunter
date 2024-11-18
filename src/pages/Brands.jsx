@@ -11,7 +11,7 @@ const Brands = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const response = await fetch("./brands.json");
+        const response = await fetch("/brandList.json");
         if (!response.ok) {
           throw new Error("Failed to fetch brands data");
         }
@@ -30,7 +30,7 @@ const Brands = () => {
   );
 
   const handleViewCoupons = (brand) => {
-    navigate(`/brand/${brand._id}`, { state: brand });
+    navigate(`/brand/${brand._id}`);
   };
 
   return (
