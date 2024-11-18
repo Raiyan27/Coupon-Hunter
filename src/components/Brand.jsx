@@ -1,4 +1,6 @@
 import { useLocation } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Brand = () => {
   const location = useLocation();
@@ -13,6 +15,15 @@ const Brand = () => {
       </div>
     );
   }
+
+  const handleCopy = async (couponCode) => {
+    try {
+      await navigator.clipboard.writeText(couponCode);
+      toast.success(`Coupon code "${couponCode}" copied to clipboard!`);
+    } catch (error) {
+      toast.error("Failed to copy the coupon code.");
+    }
+  };
 
   return (
     <div className="container mx-auto p-4 min-h-[800px]">
@@ -50,9 +61,7 @@ const Brand = () => {
                   {coupon.condition}
                 </p>
                 <button
-                  onClick={() =>
-                    navigator.clipboard.writeText(coupon.coupon_code)
-                  }
+                  onClick={() => handleCopy(coupon.coupon_code)}
                   className="mt-4 w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600"
                 >
                   Copy Code

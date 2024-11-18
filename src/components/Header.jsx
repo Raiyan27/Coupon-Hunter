@@ -28,31 +28,43 @@ const Header = () => {
         <nav className="hidden md:flex space-x-6">
           <NavLink
             to="/"
-            className="text-gray-600 hover:text-blue-500"
-            activeClassName="text-blue-500 font-semibold"
+            className={({ isActive }) =>
+              isActive
+                ? "text-blue-500 font-semibold"
+                : "text-gray-600 hover:text-blue-500"
+            }
           >
             Home
           </NavLink>
           <NavLink
             to="/brands"
-            className="text-gray-600 hover:text-blue-500"
-            activeClassName="text-blue-500 font-semibold"
+            className={({ isActive }) =>
+              isActive
+                ? "text-blue-500 font-semibold"
+                : "text-gray-600 hover:text-blue-500"
+            }
           >
             Brands
           </NavLink>
           {currentUser && (
             <NavLink
               to="/my-profile"
-              className="text-gray-600 hover:text-blue-500"
-              activeClassName="text-blue-500 font-semibold"
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue-500 font-semibold"
+                  : "text-gray-600 hover:text-blue-500"
+              }
             >
               My Profile
             </NavLink>
           )}
           <NavLink
             to="/about-us"
-            className="text-gray-600 hover:text-blue-500"
-            activeClassName="text-blue-500 font-semibold"
+            className={({ isActive }) =>
+              isActive
+                ? "text-blue-500 font-semibold"
+                : "text-gray-600 hover:text-blue-500"
+            }
           >
             About Dev
           </NavLink>

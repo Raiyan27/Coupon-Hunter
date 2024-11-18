@@ -14,6 +14,8 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Brand from "./components/Brand.jsx";
+import MyProfile from "./components/MyProfile.jsx";
+import UpdateProfile from "./components/UpdateProfile.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,7 +51,15 @@ const router = createBrowserRouter([
         path: "my-profile",
         element: (
           <PrivateRoute>
-            <div>MY profile</div>
+            <MyProfile />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "update-profile",
+        element: (
+          <PrivateRoute>
+            <UpdateProfile />
           </PrivateRoute>
         ),
       },
@@ -60,7 +70,14 @@ createRoot(document.getElementById("root")).render(
   <StrictMode>
     <AuthProvider>
       <RouterProvider router={router} />
-      <ToastContainer />
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        closeOnClick
+        pauseOnHover
+        draggable
+      />
     </AuthProvider>
   </StrictMode>
 );
