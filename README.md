@@ -21,6 +21,7 @@ Users can sign up or log in using their email or Google account through Firebase
 - **Social Login**: Use Google authentication for quick login.
 - **Password Reset**: Request password reset via email.
 - **Coupon Copying**: Copy coupon codes to the clipboard with a single click.
+- **Responsive design**: Website completely responsive with desktop, tablet and mobile devices.
 - **Private Routes**: Some pages (e.g., user profile, coupons) are only accessible to logged-in users.
 
 ---
