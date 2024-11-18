@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute.jsx";
 
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Brand from "./components/Brand.jsx";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const router = createBrowserRouter([
       },
       {
         path: "brand/:id",
-        element: <PrivateRoute></PrivateRoute>,
+        element: (
+          <PrivateRoute>
+            <Brand />
+          </PrivateRoute>
+        ),
       },
       {
         path: "my-profile",

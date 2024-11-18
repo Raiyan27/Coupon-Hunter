@@ -28,12 +28,8 @@ const Brands = () => {
     brand.brand_name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const handleViewCoupons = (id, isLoggedIn = true) => {
-    if (isLoggedIn) {
-      navigate(`/brand/${id}`);
-    } else {
-      navigate("/login");
-    }
+  const handleViewCoupons = (brand) => {
+    navigate(`/brand/${brand._id}`, { state: brand });
   };
 
   return (
@@ -75,7 +71,7 @@ const Brands = () => {
             <div className="mt-4 flex justify-between items-center">
               <button
                 className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600"
-                onClick={() => handleViewCoupons(brand._id)}
+                onClick={() => handleViewCoupons(brand)}
               >
                 View Coupons
               </button>
