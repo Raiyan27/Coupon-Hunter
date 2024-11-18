@@ -11,7 +11,7 @@ const Brands = () => {
   useEffect(() => {
     const fetchBrands = async () => {
       try {
-        const response = await fetch("/brandList.json");
+        const response = await fetch("/brand.json");
         if (!response.ok) {
           throw new Error("Failed to fetch brands data");
         }
